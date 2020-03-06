@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html ng-app="inspinia">
+
+  <head>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+      <!-- Page title set in pageTitle directive -->
+      <title page-title></title>
+
+      <!-- Bootstrap -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Font awesome -->
+      <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+
+      <!-- Main Inspinia CSS files -->
+      <link href="css/animate.css" rel="stylesheet">
+      <link id="loadBefore" href="css/style.css" rel="stylesheet">
+
+
+  </head>
+
+  <body class="{{$state.current.data.specialClass}}" landing-scrollspy id="page-top">
+    <%- body %>
+
+
+
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+    <!-- jQuery and Bootstrap -->
+    <script src="js/jquery/jquery-3.1.1.min.js"></script>
+    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MetsiMenu -->
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peace JS -->
+    <script src="js/plugins/pace/pace.min.js"></script>
+    
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+
+    <!-- Main Angular scripts-->
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular/angular-sanitize.js"></script>
+    <script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="js/angular-translate/angular-translate.min.js"></script>
+    <script src="js/ui-router/angular-ui-router.min.js"></script>
+    <script src="js/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+    <script src="js/plugins/angular-idle/angular-idle.js"></script>
+
+    <!-- Moment -->
+    <script src="js/plugins/moment/moment.min.js"></script>
+    
+    <!--
+    You need to include this script on any page that has a Google Map.
+    When using Google Maps on your own site you MUST signup for your own API key at:
+    https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+    After your sign up replace the key in the URL below..
+    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
+
+    <!-- Anglar App Script -->
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/controllers.js"></script>
+
+    <!--SCRIPTS-->
+    <script src="/js/models/AppealsData.js"></script>
+    <script src="/js/models/HearingModel.js"></script>
+    <script src="/js/models/ParticipantModel.js"></script>
+    <script src="/js/models/StartHearingData.js"></script>
+    <script src="/js/directives/hearingMainBrief/hearingMainBriefDirective.js"></script>
+    <script src="/js/directives/hearingMiniBrief/hearingMiniBriefDirective.js"></script>
+    <script src="/js/directives/hearingStatistics/hearingStatisticsDirective.js"></script>
+    <script src="/js/directives/pageTitle/pageTitleDirective.js"></script>
+    <script src="/js/directives/participantCard/participantCardDirective.js"></script>
+    <script src="/js/directives/participantListItem/participantListItemDirective.js"></script>
+    <script src="/js/services/conferenceService.js"></script>
+    <script src="/js/services/httpService.js"></script>
+    <script src="/js/services/userService.js"></script>
+    <script src="/app/analytics/analyticsController.js"></script>
+    <script src="/app/conference/conferenceController.js"></script>
+    <script src="/app/dashboard/dashboardController.js"></script>
+    <script src="/app/dashboard/docketSearchModalController.js"></script>
+    <script src="/app/login/loginController.js"></script>
+    <script src="/app/metric/metricController.js"></script>
+    <script src="/app/metrics/metricsController.js"></script>
+    <!--SCRIPTS END-->
+    <script src="/js/dependencies/sails.io.js"
+      autoConnect="false">
+    </script> 
+    <script>io.sails.transports=['websocket']</script>
+    <!-- Custom Directives
+    <script src="js/directives/pageTitle/pageTitleDirective.js"></script>
+    <script src="js/directives/hearingMainBrief/hearingMainBriefDirective.js"></script>
+    <script src="js/directives/hearingMiniBrief/hearingMiniBriefDirective.js"></script>
+    -->
+
+    <!-- Custom Controllers
+    <script src="app/login/loginController.js"></script>
+    <script src="app/dashboard/dashboardController.js"></script>
+    -->
+    <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+    <script type="text/javascript">
+      FreshWidget.init("", {"queryString": "&widgetType=popup&searchArea=no", "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "Support", "buttonColor": "black", "buttonBg": "#FFAC24", "alignment": "2", "offset": "350px", "formHeight": "700px", "url": "https://care.globo-tek.com"} );
+    </script>
+    
+  </body>
+</html>

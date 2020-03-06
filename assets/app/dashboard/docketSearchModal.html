@@ -1,0 +1,36 @@
+<div>
+  <div class="modal-header">
+      <h3 class="modal-title">Docket Search</h3>
+  </div>
+  <div class="modal-body">
+
+    <div><label>Docket Id: </label></div>
+    <input type="text" class="form-control" name="search" ng-model="vm.docketToFind"/>
+    <button class="btn btn-primary m-t-xs" ng-click="vm.search(vm.docketToFind)">Search</button>
+
+    <style>
+      #docketDetail{
+        margin-top: .5em;
+        margin-bottom: .5em;
+        border: 1px solid #666;
+        padding: 3px 10px;
+        cursor: pointer;
+      }
+
+      #docketDetail:hover{
+        background-color: #CCC;
+      }
+    </style>
+
+    <div class="m-t-xs" ng-if="vm.docketFound">
+      <br/>
+      <div>Docket Found:</div>
+      <div id="docketDetail" class="pointer" ng-click="vm.ok()">
+        <b>Docket Number: {{ vm.docketData.docket_number }}</b>  Issued Id: {{ vm.docketData.issue_id }} Issue Seq Num: {{ vm.docketData.issue_seq_num }}
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="vm.cancel()" class="btn btn-primary">Cancel</button>
+  </div>
+</div>

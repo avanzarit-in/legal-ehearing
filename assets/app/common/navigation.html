@@ -1,0 +1,91 @@
+<!-- Left Nav Bar -->
+<nav class="navbar-default navbar-static-side" role="navigation">
+	<div class="sidebar-collapse" full-scroll>
+		<ul side-navigation class="nav metismenu" id="side-menu">
+			<li class="nav-header">
+				<div class="dropdown profile-element" uib-dropdown>
+					<span>
+						<img alt="image" class="img-circle" src="img/profile_dars.png" />
+					</span>
+					<a uib-dropdown-toggle href>
+						<span class="clear">
+							<span class="block m-t-xs">
+								<strong class="font-bold">{{ vm.login_phone_number }}</strong>
+								<!--<span class="label {{ vm.labelClass }}">{{ vm.userStatus }}</span>-->
+							</span>
+							<span class="text-muted text-xs block">{{ vm.agent_first_name }} {{ vm.agent_last_name }}
+								<b class="caret"></b>
+								<br/>
+								<br/>
+								<span class="label {{ vm.labelClass }}">{{ vm.labelText}}</span>
+							</span>
+						</span>
+					</a>
+					<ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+						<li>
+							<a href="#/dashboard">Dashboard</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a class="pointer" ng-click="vm.ready()">
+								<i class="fa fa-check-circle-o text-success"></i> Ready </a>
+						</li>
+						<li>
+							<a class="pointer" ng-click="vm.notready()">
+								<i class="fa fa-clock-o text-warning"></i> Not Ready </a>
+						</li>
+						<li>
+							<a class="pointer" ng-click="vm.logOutAlert()">
+								<i class="fa fa-sign-in text-danger"></i> Log Off</a>
+						</li>
+					</ul>
+				</div>
+				<div class="logo-element">
+					DARS
+				</div>
+			</li>
+			<li>
+				<a href="#/dashboard">
+					<i class="fa fa-th-large text-warning"></i>
+					<span class="nav-label">Dashboards</span>
+				</a>
+			</li>
+			<li ng-class="{active: $state.includes('analytics')}">
+				<a href="">
+					<i class="fa fa-pie-chart text-info"></i>
+					<span class="nav-label">{{ 'ANALYTICS' | translate }}</span>
+					<span class="fa arrow"></span>
+				</a>
+				<ul class="nav nav-second-level" ng-class="{in: $state.includes('analytics')}">
+					<li ui-sref-active="active">
+						<a ui-sref="analytics.daily_report">Daily Report</a>
+					</li>
+					<!--<li ui-sref-active="active">
+						<a ui-sref="forms.advanced_plugins">Advanced Plugins</a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="forms.wizard.step_one">Wizard</a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="forms.file_upload">File Upload</a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="forms.text_editor">Text Editor</a>
+					</li>-->
+				</ul>
+			</li>
+			<li>
+				<a href="#/supervisor">
+					<i class="fa fa-binoculars text-navy"></i>
+					<span class="nav-label">Supervisor</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a href="http://10.41.8.94:8080/callrec/index.jsp" target="_blank">
+				  <i class="fa fa-dot-circle-o text-danger"></i>
+				    <span class="nav-label">Call Recording</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>

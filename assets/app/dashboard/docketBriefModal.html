@@ -1,0 +1,65 @@
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title text-muted"> Docket Number: {{ vm.brief.docket_number }} - <i class="fa fa-clock-o text-danger"></i> {{ vm.processDate(vm.brief.scheduled_dt) }} {{ vm.processTime(vm.brief.scheduled_dt,vm.brief.scheduled_time) }} </h4>
+    </div>
+    <div class="modal-body">
+
+        <div class="social-feed-box">
+            <div class="social-body">
+              <p>
+                <div class="row  m-t-sm">
+                  <div class="col-sm-3">
+                    <div class="font-bold"><i class="fa fa-user"></i> CLAIMANT</div>
+                    {{ vm.brief.first_name }} {{ vm.brief.last_name }}
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="font-bold"><i class="fa fa-legal"></i> APPEALS OFFICE</div>
+                    {{ vm.brief.site_location }}
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="font-bold"><i class="fa fa-briefcase"></i> CASE TYPE</div>
+                    {{ vm.brief.claim_type_desc }}
+                  </div>
+                </div>
+              </p>
+              <p><h2 class="label label-primary">Party Details</h2></p>
+              <p>  
+                <div class="ibox float-e-margins">
+                  <div class="ibox-content">
+                      <table class="table table-hover">
+                          <thead>
+                          <tr>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th>Type</th>
+                              <th>Employer</th>
+                              <th>Phone</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                        
+                          <tr ng-repeat="participant in vm.brief.participants">
+                             
+                              <td>{{ participant.first_name }}</td>
+                              <td>{{ participant.last_name }}</td>
+                              <td>{{ participant.partyType_desc }}</td>
+                              <td>{{ participant.business_name }}</td>
+                              <td class="text-warning">{{ participant.phone_number }} <small ng-show="participant.extension.length > 0">x</small> {{ participant.extension }}</td>
+                          </tr>
+                          </tbody>
+                      </table>
+          
+                  </div>
+                </div>
+              </p>
+            </div>
+          </div>
+
+    </div>
+  <div class="modal-footer">
+    <button ng-click="vm.cancel()" class="btn btn-primary">Cancel</button>
+  </div>
+</div>
+

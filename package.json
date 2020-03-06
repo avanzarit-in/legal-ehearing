@@ -1,0 +1,53 @@
+{
+  "name": "dars",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "cometd": "^3.1.3",
+    "cometd-nodejs-client": "^1.0.2",
+    "connect-redis": "3.3.3",
+    "ejs": "2.3.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "grunt": "1.0.1",
+    "grunt-contrib-clean": "1.0.0",
+    "grunt-contrib-coffee": "1.0.0",
+    "grunt-contrib-concat": "1.0.1",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-cssmin": "1.0.1",
+    "grunt-contrib-jst": "1.0.0",
+    "grunt-contrib-less": "1.3.0",
+    "grunt-contrib-uglify": "1.0.1",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-sails-linker": "~0.10.1",
+    "grunt-sync": "0.5.2",
+    "include-all": "^1.0.0",
+    "moment": "^2.20.1",
+    "oracledb": "^2.0.15",
+    "rc": "1.0.1",
+    "sails": "~0.12.14",
+    "sails-disk": "~0.10.9",
+    "sails-hook-cron": "^2.2.2",
+    "sails-ioredis": "^0.2.0",
+    "sails-oracle-database": "^0.3.2",
+    "socket.io-redis": "1.0.0",
+    "ssh2": "^0.5.5",
+    "winston": "^2.4.0",
+    "winston-daily-rotate-file": "^1.7.2",
+    "ws": "^4.1.0",
+    "genesys": "file:genesys-1.0.0.tgz",
+    "globly": "file:globly.zip"
+  },
+  "scripts": {
+    "debug": "node debug app.js",
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/root/dars.git"
+  },
+  "author": "root",
+  "license": ""
+}

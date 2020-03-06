@@ -1,0 +1,189 @@
+<div id="wrapper" ng-controller="conferenceController as vm">
+
+		<!-- Navigation -->
+		<div ng-include="'app/common/navigation.html'"></div>
+	
+		<div id="page-wrapper" class="gray-bg">
+	
+			<!-- Page wrapper -->
+			<div ng-include="'app/common/topnavbar.html'"></div>
+	
+			<div class="row border-bottom white-bg page-heading">
+				<div class="col-lg-10">
+					<h2>{{ vm.appealDetail.code }} - {{ vm.appealDetail.description }}</h2>
+					<h3>
+						<span class="label label-default bg-muted text-danger">Docket #: {{ vm.appealDetail.docket_number }}</span>
+						<span class="label label-default bg-muted text-danger">Issue Id: {{ vm.appealDetail.issue_id }}</span>
+						<span class="label label-default bg-muted text-danger">Sequence #: {{ vm.appealDetail.issue_seq_num }}</span>
+						<span class="label label-default bg-muted text-danger">Site Location: {{ vm.appealDetail.site_location }}</span>
+					</h3>
+				</div>
+			</div>
+
+			<div class="wrapper row wrapper-content">
+				<!-- Hearing Officer Card -->
+				<div class="col-lg-4">&nbsp;</div>
+				<div class="col-lg-3">
+					<div class="contact-box b-r-lg">
+						<div class="col-sm-3" valign="middle">
+							<div >
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+								<button class="text-center btn btn-default btn-circle btn-lg" >
+								 <i class="fa fa-legal text-danger"></i>
+								</button>
+								<p>&nbsp;</p>
+								<div class="sk-spinner sk-spinner-wave" ng-show="vm.hearingStarted && vm.talkingStarted">
+										<div class="sk-rect1"></div>
+										<div class="sk-rect2"></div>
+										<div class="sk-rect3"></div>
+										<div class="sk-rect4"></div>
+										<div class="sk-rect5"></div>
+										<div class="sk-rect6"></div>
+										<div class="sk-rect7"></div>
+										<div class="sk-rect8"></div>
+										<div class="sk-rect9"></div>
+										<div class="sk-rect10"></div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-sm-9">
+							<h4>
+								<strong>{{ vm.appealDetail.docket_number }}</strong>
+							</h4>
+							
+							<p>
+								<text>{{ vm.appealDetail.code }} - {{ vm.appealDetail.description }}</text><br/><br/>
+								
+								<i class="fa fa-university"></i>&nbsp;&nbsp;{{ vm.appealDetail.site_location }}
+								<br/>
+								
+								<i class="fa fa-user-circle"></i>&nbsp;&nbsp;&nbsp;{{ vm.appealDetail.first_name }} {{ vm.appealDetail.last_name }}
+								<br/>
+								
+								<i class="fa fa-clock-o text-danger"></i>&nbsp;&nbsp;&nbsp;{{ vm.processDate(vm.appealDetail.scheduled_dt) }} {{ vm.processTime(vm.appealDetail.scheduled_dt,vm.appealDetail.scheduled_time) }}
+							</p>
+							<br/>
+							<div>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline" ng-if="!vm.hearingStarted" ng-click="vm.startHearing()" ng-show="vm.hearingActive"
+								 tooltip-placement="left" uib-tooltip="Start Hearing">
+									<i class="fa fa-phone text-success"></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline" ng-if="vm.hearingStarted" ng-click="vm.endHearing()" tooltip-placement="left"
+								 uib-tooltip="End Hearing">
+									<i class="fa fa-power-off text-danger"></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline" ng-show="!vm.muteActive" ng-class="{'active': muteActive}" ng-disabled="!vm.hearingStarted"
+								 ng-click="vm.mute()" tooltip-placement="right" uib-tooltip="Mute Me">
+								<i class="fa fa-microphone"></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline" ng-show="vm.muteActive" ng-class="{'active': muteActive}" ng-disabled="!vm.hearingStarted"
+								 ng-click="vm.mute()" tooltip-placement="right" uib-tooltip="Unmute Me">
+									<i class="fa fa-microphone-slash text-danger"></i>
+								</a>
+								<small>&nbsp;&nbsp;</small>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline" ng-show="vm.hearingStarted && !vm.muteAllActive" data-toggle="tooltip" data-placement="top" tooltip-placement="top"
+									uib-tooltip="Mute Everyone"  ng-click="vm.muteAll()">
+									<i class="fas fa-sync fa-spin"><i class="fa fa-microphone"></i></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline" ng-show="vm.hearingStarted && vm.muteAllActive" data-toggle="tooltip" data-placement="top" 
+									tooltip-placement="top"	uib-tooltip="Unmute Everyone" ng-click="vm.unmuteAll()">
+									<i class="fa fa-microphone-slash"></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline"  ng-show="vm.hearingStarted && !vm.holdAllActive" data-toggle="tooltip" data-placement="top" 
+									tooltip-placement="top"	uib-tooltip="Hold All" ng-click="vm.holdAll()">
+									<i class="fa fa-pause"></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline" ng-show="vm.hearingStarted && vm.holdAllActive" data-toggle="tooltip" data-placement="top" 		tooltip-placement="top"	uib-tooltip="Retrieve All" ng-click="vm.unholdAll()">
+										<i class="fa fa-play"></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline"  ng-show="vm.hearingStarted" tooltip-placement="top"	uib-tooltip="Hangup All" ng-disabled="!vm.hearingStarted || vm.holdAllActive"
+							 		ng-click="vm.hangupAllAlert()">
+									<i class="fa fa-tty"></i>
+								</a>
+								<a class="btn btn-default btn-circle btn-bitbucket btn-outline"  ng-show="vm.okNotes" tooltip-placement="top"	uib-tooltip="Create Notes" ng-disabled="!vm.okNotes"
+							 		ng-click="vm.addNotesModal()">
+									<i class="fa fa-pencil text-success"></i>
+								</a>
+						
+							</div>
+							
+							<br/>
+							<div>
+								<form role="form">
+									<div class="text-center">
+										<div class="form-group">
+											<div class="col-sm-10">
+												<select chosen class="text-center form-control" ng-show="vm.okDisposition" ng-disabled="!vm.okDisposition" ng-model="dispCode" ng-options="disp.name for disp in vm.dispCode">
+													<option value="">-- disposition code --</option>
+												</select>
+											</div>
+											
+												
+										</div>									
+									</div>
+								</form>
+							</div>
+							
+								
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="contact-box  b-r-lg" ng-show="vm.hearingStarted" align="center">
+								<div class="btn-group">
+									<button type="button" class="btn {{ vm.msRecbtnClass }} btn-lg m-r-sm">
+										<i class="fa fa-dot-circle-o"></i> {{ vm.msRecStatus }}
+									</button>
+								</div>
+								<h3 align="center">
+									<text class="text-danger">{{ vm.elapsedTimeHour }}</text>:
+									<text class="text-success">{{ vm.elapsedTimeMin }}</text>:
+									<text class="text-warning">{{ vm.elapsedTimeSec }}</text>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12" ng-show="vm.msRecFile">
+							<div class="contact-box  b-r-lg">
+								<h4 class="m-b-xs text-center text-success">RECORDED AUDIO</h4>
+								<div>
+									<audio controls data-ng-src="{{ vm.msRecDownload }}" type="audio/wav"></audio>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			
+			<!-- Participants Section -->
+			<div class="wrapper row wrapper-content">
+	
+				<participant-card ng-repeat="participant in vm.appealDetail.participants" object="participant" remove-manual="participant.remove"
+				 extension-manual="participant.dtmf" mute-manual="participant.mute" hold-manual="participant.hold" hungup-manual="participant.hangup"
+				 connected="participant.connected" ringing="participant.ringing" hearing-started="vm.hearingStarted"></participant-card>
+	
+			</div>
+			<div class="footer">
+				<div class="row"> 
+						
+					<div class="col-lg-12 text-center" >
+						<span>
+							<button class="btn btn-primary btn-circle btn-bitbucket btn-outline btn-lg" ng-click="vm.addParticipantModal()" tooltip-placement="left"
+							uib-tooltip="Invite Others">
+								<i class="fa fa-user-plus fx-2x"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	

@@ -1,0 +1,7 @@
+<li class="warning-element" id="task1">
+  {{ participantData.first_name }} {{ participantData.last_name }} {{ participantData.name }}
+  <div class="agile-detail">
+    <a class="pull-right btn btn-xs btn-primary" ng-click="addToHearing()" ng-disabled="!hearingStarted">Add to hearing</a>
+    <i class="fa fa-phone-square text-danger"></i> {{ participantData.phone_number }}
+  </div>
+</li>

@@ -1,0 +1,26 @@
+  <div class="modal-dialog modal-sm">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6 b-r">
+          <h3 class="m-t-none m-b">Add Tag</h3>
+          <form role="form">
+            <div class="form-group"><label>Label</label> <input type="text" placeholder="Tag Label" class="input input-sm form-control"
+                ng-model="vm.newRecTag.label" required></div>
+            <div class="form-group"><label>Description</label> <input type="text" placeholder="Tag Description" class="input input-sm form-control"
+                ng-model="vm.newRecTag.description" required></div>
+            <div>
+                <button type="button" class="btn btn-sm btn-warning m-t-n-xs" ng-click="vm.cancel()"><i class="fa fa-times"></i>&nbsp;Close</button>&nbsp;
+                <button type="button" class="btn btn-sm btn-primary m-t-n-xs" ng-click="vm.ok()"><i class="fa fa-check"></i>&nbsp;Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-6">
+          <h4>What is a tag?</h4>
+          <p>Tagging your Recordings is a great way of noting specific actions, like use of profanity, important legal disclaimers or evidence. 
+            Once you've started to tag your Recordings, you can use the Tag filter to skip to the tagged location and not have to listen through the recording to find a specific text. 
+            </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>

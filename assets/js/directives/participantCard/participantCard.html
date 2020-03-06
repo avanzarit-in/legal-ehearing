@@ -1,0 +1,81 @@
+<div class="col-lg-4">
+	<div class="contact-box b-r-lg">
+		<div class="col-sm-3">
+			<img alt="image" class="img-rounded border m-t-xs img-responsive" src="img/profile_dars.png"> 
+			<div class="m-t-xs font-bold">{{ object.party_desc }}</div>
+			<br/>
+			<div class="sk-spinner sk-spinner-wave pull-left" ng-show="object.connected && object.talking">
+				<div class="sk-rect1"></div>
+				<div class="sk-rect2"></div>
+				<div class="sk-rect3"></div>
+				<div class="sk-rect4"></div>
+				<div class="sk-rect5"></div>
+				<div class="sk-rect6"></div>
+				<div class="sk-rect7"></div>
+				<div class="sk-rect8"></div>
+				<div class="sk-rect9"></div>
+				<div class="sk-rect10"></div>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			<h3>
+				<strong>{{ object.first_name }} {{ object.last_name }}</strong>
+				<a class="btn btn-sm btn-white btn-circle text-danger m-b-xs btn-bitbucket pull-right" ng-show="!object.connected" ng-click="remove()"
+				 tooltip-placement="right" uib-tooltip="Delete Participant">
+					<i class="fa fa-trash-o"></i>
+				</a>
+			</h3>
+			<div>
+				<small class="label {{ labelClass }} ">{{ participantStatus }}</small>
+			</div>
+			<br/>
+			<address>
+				<i class="fa fa-briefcase text-danger"></i> {{ object.home }}
+				<small ng-if="object.extension.length > 0">x</small>{{ object.extension }}
+			</address>
+			<div>
+				<a class="btn btn-xs btn-default btn-outline" ng-show="!object.connected && !object.ringing" ng-disabled="!hearingStarted"
+				 ng-click="addToHearing(object.home)" tooltip-placement="top" uib-tooltip="Call Home - {{ object.home }}">
+					<i class="fa fa-home"></i>Home
+				</a>
+				<a class="btn btn-xs btn-default btn-outline" ng-show="!object.connected && !object.ringing" ng-disabled="!hearingStarted"
+				 ng-click="addToHearing(object.mobile)" tooltip-placement="bottom" uib-tooltip="Call Mobile  - {{ object.mobile }}">
+					 <i class="fa fa-mobile"></i> Mobile
+				</a>
+				<a class="btn btn-xs btn-default btn-outline" ng-show="!object.connected && !object.ringing" ng-disabled="!hearingStarted"
+				 ng-click="addToHearing(object.work)" tooltip-placement="top" uib-tooltip="Call Work - {{ object.work }}">
+				 	<i class="fa fa-briefcase"></i> Work
+				</a>
+				<a class="btn btn-xs btn-default btn-outline" ng-show="object.connected || object.ringing" ng-disabled="!hearingStarted"
+				 ng-click="hangup()" tooltip-placement="left" uib-tooltip="Hangup">
+					<i class="fa fa-tty text-danger"></i> End
+				</a>
+				
+				<a class="btn btn-xs btn-default btn-outline" ng-show="!object.mute && object.connected" ng-disabled="!object.connected" ng-class="{'active': muteActive}"
+				 ng-click="mute()" tooltip-placement="bottom" uib-tooltip="Mute Participant">
+					<i class="fa fa-microphone"></i> Mute
+				</a>
+
+				<a class="btn btn-xs btn-default btn-outline" ng-show="object.mute && object.connected" ng-disabled="!object.connected" ng-class="{'active': muteActive}"
+				 ng-click="mute()" tooltip-placement="bottom" uib-tooltip="Unmute Participant">
+					<i class="fa fa-microphone-slash"></i> Unmute
+				</a>
+				<a class="btn btn-xs btn-default btn-outline" ng-show="!object.hold && object.connected" ng-disabled="!object.connected" ng-class="{'active': holdActive}"
+				 ng-click="hold()" tooltip-placement="top" uib-tooltip="Hold Participant">
+					<i class="fa fa-pause"></i> Hold
+				</a>
+				<a class="btn btn-xs btn-default btn-outline" ng-show="object.hold && object.connected" ng-disabled="!object.connected" ng-class="{'active': holdActive}"
+				 ng-click="hold()" tooltip-placement="top" uib-tooltip="Unhold Participant">
+					<i class="fa fa-play"></i> Resume
+				</a>
+				
+				<a class="btn btn-xs btn-default btn-outline" type="button" ng-show="object.connected" ng-click="keypadModal();" 
+					tooltip-placement="left" uib-tooltip="Phone Keypad"> <i class="fa fa-th"></i>
+				</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		
+		<div class="clearfix"></div>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<div class="vertical-timeline-block">
+  <div class="vertical-timeline-icon {{ ::icon_color }}-bg">
+    <i class="fa fa-briefcase"></i>
+  </div>
+  <style>
+    .participants span::after {
+      content: ', ';
+    }
+
+    .participants span:last-child::after {
+      content: '';
+    }
+  </style>
+  <div class="vertical-timeline-content">
+    <h2>{{ ::brief.name }}
+      <!--<button class="btn btn-sm btn-primary pull-right" ng-click="displayMoreInfo();">More info</button>-->
+    </h2>
+    <p>
+      <strong>DOCKET ID:</strong> {{ ::brief.docket_number }}
+      <strong>ISSUE ID:</strong> {{ ::brief.issue_id }}
+      <strong>SEQ NUM:</strong> {{ ::brief.issue_seq_num }}
+      <br/>
+      <strong>Participants:</strong>
+      <span class="participants">
+        <span ng-repeat="participant in brief.participants">{{ ::participant.first_name }} {{ ::participant.last_name }} ({{ ::participant.party_desc }})</span>
+      </span>
+    </p>
+    <span class="vertical-date">
+      <span ng-if="isToday">Today</span>
+      <br/>
+      <small>{{ ::processDate(brief.scheduled_dt) }} {{ ::processTime(brief.scheduled_dt,brief.scheduled_time) }}</small>
+    </span>
+    
+        <button class="btn btn-default btn-bitbucket btn-outline" type="button" ng-click="displayMoreInfo();" tooltip-placement="left" uib-tooltip="More info"> <i class="fa fa-newspaper-o text-success"></i></button>
+        <button class="btn btn-default btn-bitbucket btn-outline" ui-sref="conference({docket_id: brief.docket_number})" type="button" tooltip-placement="bottom" uib-tooltip="Go to hearing"> <i class="fa fa-send-o text-danger"></i></button>
+        <button class="btn btn-default btn-bitbucket btn-outline" ng-click="refreshDocket();" type="button" tooltip-placement="right" uib-tooltip="Refresh docket"> <i class="fa fa-refresh text-warning"></i></button>
+  </div>
+</div>

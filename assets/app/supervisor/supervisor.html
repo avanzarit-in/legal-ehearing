@@ -1,0 +1,175 @@
+<div id="wrapper" ng-controller="supervisorController as vm">
+
+  <!-- Navigation -->
+  <div ng-include="'app/common/navigation.html'"></div>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <!-- Page wrapper -->
+    <div ng-include="'app/common/topnavbar.html'"></div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+      <div class="row  border-bottom white-bg dashboard-header">
+        <div class="col-sm-3">
+          <h3> Welcome {{ vm.agent_first_name }} {{ vm.agent_last_name }} </h3>
+          <small>Here is your daily snapshot</small>
+          <ul class="list-group clear-list m-t">
+            <li class="list-group-item fist-item">
+              <span class="pull-right">
+                {{ vm.appeals.length }}
+              </span>
+              <span class="label label-success">1</span> # of scheduled hearings.
+            </li>
+            <li class="list-group-item">
+              <span class="pull-right">
+                {{ vm.appeals.length }}
+              </span>
+              <span class="label label-info">2</span> # of Officers assigned hearings.
+            </li>
+            <li class="list-group-item">
+              <span class="pull-right">
+                {{ vm.appeals.length }}
+              </span>
+              <span class="label label-primary">3</span> # of officers logged in.
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-6">
+          <div class="flot-chart dashboard-chart">
+              <h3 class="text-center">
+                  Monthly Comparison
+              </h3>
+            <div flot class="flot-chart-content" dataset="vm.flotData()" options="vm.flotOptions"></div>
+          </div>
+          
+        </div>
+        <div class="col-sm-3">
+            <div class="statistic-box">
+                <h3 class="text-center">
+                    Daily Statistic
+                </h3>
+    
+                <div class="row text-center" >
+                    <div class="col-lg-12" >
+                            <canvas polarchart options="vm.polarOptions" data="vm.polarData()" width="200" height="200"></canvas>
+                        <h5>Hearings</h5>
+                    </div>
+                </div>
+                
+    
+            </div>
+        </div>
+      </div>
+      <!--Row Start-->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="wrapper wrapper-content">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                  <div class="ibox-title">
+                    <h5>Scheduled Hearings</h5>
+                  </div>
+                  <div class="ibox-content ibox-heading">
+                    <h3>There are {{ vm.appeals.length }} hearings scheduled today!</h3>
+                    <small>
+                      <i class="fa fa-map-marker"></i> Check individual dockets to see detail.</small>
+                  </div>
+                  <div class="ibox-content inspinia-timeline">
+
+                    <div class="timeline-item" ng-repeat="appeal in vm.appeals | orderBy: 'user_id'">
+                      <div class="row">
+                        <div class="col-xs-3 date">
+                          <i class="fa fa-briefcase text-navy"></i>
+                          {{ vm.formatTime(appeal.scheduled_dt,appeal.scheduled_time) }}
+                          <br/>
+                          <!--<small class="text-navy">2 hour ago</small>-->
+                        </div>
+                        <div class="col-xs-9 content no-top-border">
+                          <p class="m-b-xs">
+                            <strong>Docket Number: {{ appeal.docket_number }}</strong>
+                            
+                          </p>
+
+                          <p class="small">Hearing Officer:
+                            <text class="text-danger">{{ appeal.first_name }} {{ appeal.last_name }} </text>
+                            <br/> Site Location:
+                            <text class="text-danger">{{ appeal.site_location }}</text>
+                            <br/> Claim Type Code :
+                            <text class="text-danger">{{ appeal.claim_type_cd }}</text>
+                            <br/> Claim Type Desc:
+                            <text class="text-danger">{{ appeal.claim_type_desc }}</text>
+                            <br/>
+                            <br/>
+                            <i class="fa fa-clock-o text-danger"></i> {{ vm.duration(appeal.scheduled_time) }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                  <div class="ibox-title">
+                    <h5>Active Hearings</h5>
+                    
+                  </div>
+                  <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                      <li class="list-group-item" ng-repeat="hearing in vm.hearing | orderBy: 'start_time' : true">
+                        <p>
+                          <a class="text-info" href="">@{{ hearing.first_name }} {{ hearing.last_name }}</a> started the hearing for docket
+                          <b>{{ hearing.docket_number }}</b> at {{ hearing.start_time }}.
+                        </p>
+                        <small class="block text-muted">
+                          <i class="fa fa-clock-o"></i>
+                          <small class="label label-default text-danger">{{ vm.processTime(hearing.start_time,'hours') }}</small>:
+                          <small class="label label-default text-danger">{{ vm.processTime(hearing.start_time,'minutes') }}</small>:
+                          <small class="label label-default text-danger">{{ vm.processTime(hearing.start_time,'seconds') }}</small>
+                        </small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                  <div class="ibox-title">
+                    <h5>Hearing Officers - Log in / Log Out Feed</h5>
+                  </div>
+                  <div class="ibox-content">
+
+                    <div>
+                      <div class="feed-activity-list">
+
+                        <div class="feed-element" ng-repeat="user in vm.userState | orderBy: 'username'">
+                          <a ui-sref="profile" class="pull-left">
+                            <img alt="image" class="img-circle" src="img/profile_dars.png">
+                          </a>
+                          <div class="media-body ">
+                            <small class="pull-right"><i class="fa fa-clock-o text-danger"></i> {{ vm.duration(user.login_time) }}</small>
+                            <strong>{{ user.first_name }} {{ user.last_name }}</strong> status is
+                            <text class='text-navy' ng-if="user.state==='Logged In'" >{{ user.state }}</text>
+                            <text class='text-danger' ng-if="user.state==='Logged Out'" >{{ user.state }}</text>
+                            <br>
+                            <small class="text-muted">Today {{ user.login_time }} - {{ user.login_date }}</small>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Row End-->
+    </div>
+
+  </div>
+</div>

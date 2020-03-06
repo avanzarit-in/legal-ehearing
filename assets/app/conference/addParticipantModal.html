@@ -1,0 +1,63 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        <i class="fa fa-user modal-icon"></i>&nbsp;Add Participant</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <form role="form">
+          <div class="col-lg-6">
+
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Participant First Name" class="input input-sm form-control" ng-model="vm.newParticipant.first_name" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Participant Last Name" class="input input-sm form-control" ng-model="vm.newParticipant.last_name" required>
+            </div>
+            <div class="form-group">
+              <label>Home Phone Number</label>
+              <input type="text" placeholder="Participant Home Phone Number" class="input input-sm form-control" data-mask="9999999999" minlength="4"
+                maxlength="10" ng-model="vm.newParticipant.home">
+            </div>
+            <div class="form-group">
+              <label>Mobile Phone Number</label>
+              <input type="text" placeholder="Participant Mobile Phone Number" class="input input-sm form-control" data-mask="9999999999" minlength="4"
+                maxlength="10" ng-model="vm.newParticipant.mobile">
+            </div>
+            <div class="form-group">
+              <label>Work Phone Number</label>
+              <input type="text" placeholder="Participant Work Phone Number" class="input input-sm form-control" data-mask="9999999999" minlength="4"
+                maxlength="10" ng-model="vm.newParticipant.work">
+            </div>
+            <div class="form-group">
+              <label>Work Extension</label>
+              <input type="text" placeholder="Participant Work Phone Extension" class="input input-sm form-control" ng-model="vm.newParticipant.extension">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Party Type Code</label>
+              <input type="text" placeholder="Participant Type Code" class="input input-sm form-control" ng-model="vm.newParticipant.party_code">
+            </div>
+            <div class="form-group">
+              <label>Party Type Desc</label>
+              <input type="text" placeholder="Participant Type Desc" class="input input-sm form-control" ng-model="vm.newParticipant.party_desc">
+            </div>
+            <div class="form-group">
+              <label>Business Name</label>
+              <input type="text" placeholder="Participant Business Name" class="input input-sm form-control" ng-model="vm.newParticipant.business_name">
+            </div>
+            <div>
+                <button type="button" class="btn btn-sm btn-warning m-t-n-xs" ng-click="vm.cancel()">
+                  <i class="fa fa-times"></i>&nbsp;Close</button>&nbsp;
+                <button type="button" class="btn btn-sm btn-primary m-t-n-xs" ng-click="vm.ok()">
+                  <i class="fa fa-check"></i>&nbsp;Submit</button>
+              </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+</div>
